@@ -1,0 +1,106 @@
+[
+  {
+    "id": 1,
+    "descripcion": "Carry On",
+    "categoria": "1",
+    "precio": 10,
+    "stock": 2,
+    "imagen": "./assets/images/carry1.png"
+  },
+  {
+    "id": 2,
+    "descripcion": "Scuderia AlphaTauri Carry-on",
+    "categoria": "1",
+    "precio": 20,
+    "stock": 2,
+    "imagen": "./assets/images/carry2.png"
+  },
+  {
+    "id": 3,
+    "descripcion": "Grip Sling",
+    "categoria": "2",
+    "precio": 30,
+    "stock": 2,
+    "imagen": "./assets/images/carry3.png"
+  },
+  {
+    "id": 4,
+    "descripcion": "Centenary Carry-On",
+    "categoria": "1",
+    "precio": 40,
+    "stock": 2,
+    "imagen": "./assets/images/carry4.png"
+  },
+  {
+    "id": 5,
+    "descripcion": "Floyd Trunk",
+    "categoria": "1",
+    "precio": 50,
+    "stock": 2,
+    "imagen": "./assets/images/carry5.png"
+  },
+  {
+    "id": 6,
+    "descripcion": "Woolly Cube Tote",
+    "categoria": "2",
+    "precio": 60,
+    "stock": 2,
+    "imagen": "./assets/images/tote1.png"
+  },
+  {
+    "id": 7,
+    "descripcion": "Travel Tote",
+    "categoria": "2",
+    "precio": 70,
+    "stock": 2,
+    "imagen": "./assets/images/tote2.png"
+  },
+  {
+    "id": 8,
+    "descripcion": "Field OB–4 Shoulder Bag",
+    "categoria": "2",
+    "precio": 80,
+    "stock": 2,
+    "imagen": "./assets/images/tote3.png"
+  },
+  {
+    "id": 9,
+    "descripcion": "24 Hour Tin Cloth Briefcase",
+    "categoria": "2",
+    "precio": 90,
+    "stock": 2,
+    "imagen": "./assets/images/tote4.png"
+  },
+  {
+    "id": 10,
+    "descripcion": "Market Tote - Night Owl Edition",
+    "categoria": "2",
+    "precio": 100,
+    "stock": 2,
+    "imagen": "./assets/images/tote5.png"
+  },
+  {
+    "id": 11,
+    "descripcion": "Peu Roda",
+    "categoria": "3",
+    "precio": 110,
+    "stock": 2,
+    "imagen": "./assets/images/shoes1.png"
+  },
+  {
+    "id": 12,
+    "descripcion": "Blazer Low '77 Vintage",
+    "categoria": "3",
+    "precio": 110,
+    "stock": 2,
+    "imagen": "./assets/images/shoes2.png"
+  },
+  {
+    "id": 13,
+    "descripcion": "Ace Spin White",
+    "categoria": "3",
+    "precio": 110,
+    "stock": 2,
+    "imagen": "./assets/images/shoes3.png"
+  }
+]

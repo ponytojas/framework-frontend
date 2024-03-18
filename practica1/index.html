@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tienda Online</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="./style/index.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand ml-2" href="#">Frameworks Frontend</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" id="login" href="#">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="logout" href="#">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      aria-labelledby="loginModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="loginForm">
+              <div class="mb-3">
+                <label for="username" class="form-label">Usuario</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Iniciar Sesión
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="addCategoryModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Añadir Nueva Categoría</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <input
+              type="text"
+              id="newCategoryName"
+              class="form-control"
+              placeholder="Nombre de Categoría"
+            />
+          </div>
+          <div class="modal-footer">
+            <button
+              id="createNewCategory"
+              type="button"
+              class="btn btn-primary"
+            >
+              Añadir
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="addProductModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Añadir nuevo producto</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="productForm">
+              <div class="mb-3">
+                <label for="newProductDescription" class="form-label"
+                  >Descripción</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="newProductDescription"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="imageInput" class="form-label"
+                  >Imagen del producto</label
+                >
+                <input class="form-control" type="file" id="imageInput" />
+              </div>
+              <div class="mb-3">
+                <label for="newProductPrice" class="form-label">Precio</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="newProductPrice"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="newProductStock" class="form-label">Stock</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="newProductStock"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="newProductCategoriesSelect" class="form-label"
+                  >Categoría</label
+                >
+                <select
+                  class="form-select"
+                  id="newProductCategoriesSelect"
+                ></select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button id="createNewProduct" type="button" class="btn btn-primary">
+              Añadir
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal"
+      id="confirmarPedidoModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Confirmar Pedido</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            ¿Estás seguro de que quieres realizar el pedido?
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button type="button" class="btn btn-primary" id="confirmarPedido">
+              Confirmar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="container-fluid d-flex flex-row mt-5"
+      style="height: 100%; min-height: 80vh; margin-bottom: 50px"
+    >
+      <div
+        class="container-fluid d-flex flex-column flex-wrap align-items-start justify-content-start"
+        style="width: 70%"
+      >
+        <div class="d-flex flex-row" style="width: 100%">
+          <h2>Productos</h2>
+        </div>
+        <div
+          style="width: 100%"
+          class="d-flex flex-row flex-wrap justify-content-center align-items-center align-self-center"
+          id="categories"
+        ></div>
+
+        <div
+          class="d-flex flex-row justify-content-center mt-4"
+          style="width: 100%"
+        >
+          <button
+            type="button"
+            class="btn btn-success mt-1 mx-2 hidden"
+            id="addCategoryButton"
+            data-bs-toggle="modal"
+            data-bs-target="#addCategoryModal"
+          >
+            Añadir Nueva Categoría
+          </button>
+          <button
+            type="button"
+            class="btn btn-success mt-1 mx-2 hidden"
+            id="addProductButton"
+            data-bs-toggle="modal"
+            data-bs-target="#addProductModal"
+          >
+            Añadir Nuevo Producto
+          </button>
+        </div>
+
+        <div id="productos" class="" style="width: 100%"></div>
+      </div>
+      <div
+        class="container-fluid d-flex flex-column sticky-top"
+        style="
+          width: 30%;
+          height: 70vh;
+          background-color: #f8f9fa;
+          margin-top: 50px;
+          border-radius: 20px;
+        "
+      >
+        <div class="d-flex flex-column" style="height: 100%">
+          <div class="d-flex flex-row" style="height: 20%">
+            <div
+              class="d-flex flex-col justify-content-center mt-5"
+              style="margin: 0 auto"
+            >
+              <svg
+                style="margin-right: 10px"
+                xmlns="http://www.w3.org/2000/svg"
+                width="2.4em"
+                height="2.4em"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="black"
+                  d="M12 13a5 5 0 0 1-5-5h2a3 3 0 0 0 3 3a3 3 0 0 0 3-3h2a5 5 0 0 1-5 5m0-10a3 3 0 0 1 3 3H9a3 3 0 0 1 3-3m7 3h-2a5 5 0 0 0-5-5a5 5 0 0 0-5 5H5c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2"
+                />
+              </svg>
+              <h2>Cesta</h2>
+            </div>
+          </div>
+          <div id="cesta" class="overflow-y-auto">
+            <div
+              id="cesta-bottom"
+              class="d-flex flex-row justify-content-center"
+              style="width: 100%"
+            ></div>
+            <div id="cesta-top" style="padding-bottom: 20px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./src/index.js"></script>
+  </body>
+</html>
