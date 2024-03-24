@@ -1,11 +1,12 @@
 <script setup>
+import { watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useDataStore } from '../../../stores/products';
 import ProductCard from './ProductCard.vue';
 
 const dataStore = useDataStore();
 const { filteredProducts } = storeToRefs(dataStore);
-console.debug(filteredProducts);
+
 </script>
 
 <template>
