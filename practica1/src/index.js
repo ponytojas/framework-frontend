@@ -255,17 +255,12 @@ $(document).ready(function () {
 
   $(document).on("click", "#createNewCategory", function () {
     const categoryName = $("#newCategoryName").val();
-    const categoriesValues = [];
-    const categoriesId = [];
-    for (const categorie in categories) {
-      const { value, id } = categorie;
-      categoriesId.push(id);
-      categoriesValues.push(value);
-    }
-    categoriesId.sort((a, b) => a - b);
+    const categoriesValues = categories.map((c) => c.value);
 
     if (categoryName && !categoriesValues.includes(categoryName)) {
-      const newId = 1 + categoriesId[categoriesId.lenght - 1];
+      const categoriesId = categories.map((c) => c.id);
+      categoriesId.sort((a, b) => a - b);
+      const newId = 1 + categoriesId[categoriesId.length - 1];
       const newCategory = { value: categoryName, id: newId };
       categories.push(categoryName);
       $("#categories").append(`
@@ -289,8 +284,11 @@ $(document).ready(function () {
     product.categoria = Number($("#newProductCategoriesSelect").val());
 
     const fileInput = $("#imageInput")[0];
-    const id = Object.keys(products).length;
-    product.id = id;
+    const productsId = Object.values(products).map((c) => c.id);
+    productsId.sort((a, b) => a - b);
+    const newId = 1 + productsId[productsId.length - 1];
+
+    product.id = newId;
 
     if (
       product.descripcion &&
@@ -341,6 +339,7 @@ $(document).ready(function () {
         }
         $("#productForm")[0].reset();
         $("#addProductModal").modal("hide");
+        products[product.id] = product;
       };
       reader.readAsDataURL(fileInput.files[0]);
     } else {
