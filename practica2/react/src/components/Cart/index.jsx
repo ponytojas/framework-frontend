@@ -1,10 +1,19 @@
 import React from "react";
 import { Icon } from "@iconify/react";
 import { useCartStore } from "../../store/cart";
+import { useSharedStore } from "../../store/shared";
 export const Cart = () => {
+  const setOpenModal = useSharedStore((state) => state.setOpenModal);
+  const setModalType = useSharedStore((state) => state.setModalType);
+
   const items = useCartStore((state) => state.items);
   const removeItem = useCartStore((state) => state.removeItem);
   const total = items.reduce((acc, item) => acc + item.totalPrice, 0);
+
+  const handleConfirmOrder = () => {
+    setOpenModal(true);
+    setModalType("confirm");
+  };
 
   return (
     <div className="flex flex-row min-h-96 bg-gray-100 w-11/12 rounded-lg sticky top-0">
@@ -23,39 +32,46 @@ export const Cart = () => {
               <p className="text-4xl ml-2 font-light">Carrito</p>
             </div>
           </div>
-          <div v-if="items.length > 0">
-            <div className="flex flex-row w-full justify-evenly my-4">
-              <p className="text-2xl font-semibold">{`Total: ${total}€`}</p>
-              <button className="bg-green-700 px-4 py-2 rounded-lg text-white">
-                Realizar el pedido
-              </button>
-            </div>
-            <div className="flex flex-col">
-              {items.map((product) => (
-                <div
-                  className="flex flex-row w-full items-center justify-between my-3 pr-3 pb-4"
-                  key={product.id}
+          {items.length > 0 && (
+            <div>
+              <div className="flex flex-row w-full justify-evenly my-4">
+                <p className="text-2xl font-semibold">{`Total: ${total}€`}</p>
+                <button
+                  className="bg-green-700 px-4 py-2 rounded-lg text-white"
+                  onClick={handleConfirmOrder}
                 >
-                  <div className="flex flex-row">
-                    <img src={product.image} className="w-12 h-12 mr-5" />
-                    <div className="flex flex-col">
-                      <div className="flex flex-row">{product.description}</div>
-                      <div className="flex flex-row">
-                        Cantidad: {product.quantity}. Total:{" "}
-                        {product.price * product.quantity}€
+                  Realizar el pedido
+                </button>
+              </div>
+              <div className="flex flex-col">
+                {items.map((product) => (
+                  <div
+                    className="flex flex-row w-full items-center justify-between my-3 pr-3 pb-4"
+                    key={product.id}
+                  >
+                    <div className="flex flex-row mr-1">
+                      <img src={product.image} className="w-12 h-12 mr-5" />
+                      <div className="flex flex-col">
+                        <div className="flex flex-row">
+                          {product.description}
+                        </div>
+                        <div className="flex flex-row">
+                          Cantidad: {product.quantity}. Total:{" "}
+                          {product.price * product.quantity}€
+                        </div>
                       </div>
                     </div>
+                    <button
+                      className="border border-red-500 px-1 py-1 rounded-lg text-red-500 hover:bg-red-500 hover:text-white"
+                      onClick={() => removeItem(product.id)}
+                    >
+                      Eliminar de la cesta
+                    </button>
                   </div>
-                  <button
-                    className="border border-red-500 px-2 py-1 rounded-lg text-red-500 hover:bg-red-500 hover:text-white"
-                    onClick={() => removeItem(product.id)}
-                  >
-                    Eliminar de la cesta
-                  </button>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

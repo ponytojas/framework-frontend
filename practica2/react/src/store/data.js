@@ -41,6 +41,7 @@ export const useDataStore = create((set) => ({
         product.id = id;
         product.price = Number(product.price);
         product.stock = Number(product.stock);
+        product.categoryId = Number(product.categoryId);
         return { products: [...state.products, product] };
       }
       return state;

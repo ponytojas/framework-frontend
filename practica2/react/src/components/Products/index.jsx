@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDataStore } from "../../store/data";
 import { ProductCard } from "./ProductCard";
 export const Products = () => {

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import { useSharedStore } from "../../store/shared";
 import { LoginModal } from "./LoginModal";
+import { ConfirmModal } from "./ConfirmModal";
+import { CategoryModal } from "./CategoryModal";
+import { ProductModal } from "./ProductModal";
 
 export const Modal = () => {
   const openModal = useSharedStore((state) => state.openModal);
@@ -19,6 +22,14 @@ export const Modal = () => {
     if (!openModal || !modalType) return;
     if (modalType === "login") {
       setChild(() => LoginModal);
+    } else if (modalType === "confirm") {
+      setChild(() => ConfirmModal);
+    } else if (modalType === "category") {
+      setChild(() => CategoryModal);
+    } else if (modalType === "product") {
+      setChild(() => ProductModal);
+    } else {
+      return;
     }
   }, [openModal, modalType]);
 
